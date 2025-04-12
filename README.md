@@ -32,7 +32,7 @@ main.go
 1. 克隆项目到本地：
 
    ```bash
-   git clone https://github.com/your-repo/sensecore-openai-proxy.git
+   git clone https://github.com/yangqian/sensecore-openai-proxy.git
    cd sensecore-openai-proxy
    ```
 
@@ -57,59 +57,6 @@ main.go
 - `max_tokens` -> `max_new_tokens`
 - `frequency_penalty` -> `repetition_penalty`
 - 限制 `top_p` 的范围在 `(0.000001, 0.999999)`。
-
-### SSE 响应处理
-
-如果目标服务返回 `text/event-stream` 响应，服务会对数据进行转换并返回。
-
-### JWT Token 生成
-
-如果请求头中包含 `Authorization`，并且格式为 `Bearer <ak|sk>`，服务会自动生成 JWT Token 并替换原有的 `Authorization`。
-
-## 配置
-
-修改 `main.go` 中的常量 `TELEGRAPH_URL` 以更改目标服务的 URL：
-
-```go
-const TELEGRAPH_URL = "https://api.sensenova.cn"
-```
-
-## 示例请求
-
-### 请求示例
-
-```bash
-curl -X POST http://localhost:8089/v1/chat/completions \
--H "Content-Type: application/json" \
--H "Authorization: Bearer <ak|sk>" \
--d '{
-  "max_tokens": 100,
-  "frequency_penalty": 0.5,
-  "top_p": 1.0,
-  "model": "gpt-3.5-turbo"
-}'
-```
-
-### 响应示例
-
-```json
-{
-  "id": "chatcmpl-123",
-  "object": "chat.completion.chunk",
-  "created": 1690000000,
-  "model": "gpt-3.5-turbo",
-  "system_fingerprint": "cf-openai-sensechat-proxy-123",
-  "choices": [
-    {
-      "index": 0,
-      "delta": {
-        "content": "Hello, world!"
-      },
-      "finish_reason": null
-    }
-  ]
-}
-```
 
 ## 许可证
 
