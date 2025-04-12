@@ -4,7 +4,7 @@
 
 ## 相关信息
 
-项目基于，由AI转换。
+项目由AI转换基于
 1. https://linux.do/t/topic/67473
 2. https://github.com/MurphyLo/cf-openai-sensechat-proxy
 
